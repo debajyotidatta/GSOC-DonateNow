@@ -1,0 +1,375 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<tal:page tal:define="is_editable python:request.set('disable_border', 1);
+                      overTitle string:Support Connexions;">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US"
+      xmlns:metal="http://xml.zope.org/namespaces/metal" 
+      xmlns:tal="http://xml.zope.org/namespaces/tal" 
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="rhaptos"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+
+  <metal:head fill-slot="css_slot">
+    <style type="text/css">
+      #donorform .error{
+        padding: .2em .5em;
+        margin: 0;
+        width: auto;
+      }
+      #donorform label{
+        font-weight: bold;
+      }
+      #donorform label.error{
+        font-weight: normal;
+      }
+      #donorform td{
+        white-space: nowrap;
+        padding: 0 .5em .5em 0;
+      }
+      
+     /* *{
+    margin:0px;
+    padding:0px;
+} */
+body{
+    color:#444444;
+    font-size:13px;
+    background: #f2f2f2;
+    font-family:"Century Gothic", Helvetica, sans-serif;
+}
+#content{
+    margin:15px auto;
+    text-align:center;
+    width:600px;
+    position:relative;
+    height:100%;
+    text-decoration: none;
+}
+#wrapper{
+    -moz-box-shadow:0px 0px 3px #aaa;
+    -webkit-box-shadow:0px 0px 3px #aaa;
+    box-shadow:0px 0px 3px #aaa;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    border-radius:10px;
+    border:2px solid #fff;
+    background-color:#f9f9f9;
+    width:600px;
+    overflow:hidden;
+}
+#steps{
+    width:600px;
+    height:340px;
+    overflow:hidden;
+}
+.step{
+margin-left:-23px;
+margin-top:-10px;
+    float:left;
+    width:580px;
+    height:340px;
+    text-align:center;
+}
+#navigation{
+    height:60px;
+    background-color:#9bd;
+    border-top:1px solid #a0b5de;
+    -moz-border-radius:0px 0px 10px 10px;
+    -webkit-border-bottom-left-radius:10px;
+    -webkit-border-bottom-right-radius:10px;
+    border-bottom-left-radius:10px;
+    border-bottom-right-radius:10px;
+}
+#navigation ul{
+    list-style:none;
+	float:left;
+	margin-left:10px;
+}
+#navigation ul li{
+	float:left;
+    border-right:1px solid #ccc;
+    border-left:1px solid #ccc;
+    position:relative;
+	margin:0px 2px;
+	width:187px;
+}
+#navigation ul li a{
+    display:block;
+    height:45px;
+    background-color:#5785B3;
+    color:#f1f1f1;
+    outline:none;
+    font-weight:bold;
+    text-decoration:none;
+    line-height:45px;
+    padding:0px 20px;
+    border:1px solid #445566;
+    -moz-border-radius:3px;
+    -webkit-border-radius:3px;
+    border-radius:3px;
+}
+#navigation ul li a:hover,
+#navigation ul li.selected a{
+    background:#D8E0E8;
+    color:#0F2234;
+    text-shadow:1px 1px 1px #fff;
+    -moz-border-radius:3px;
+    -webkit-border-radius:3px;
+    border-radius:3px;
+}
+
+
+#steps form fieldset{
+    border:none;
+    padding-bottom:20px;
+}
+#steps form legend{
+    
+    text-align:center;
+    background-color:#9BD;
+    color:#0F2234;
+    font-size:24px;
+    text-shadow:1px 1px 1px #fff;
+    font-weight:bold;
+    float:left;
+    width:600px;
+    height:50px;
+    padding:5px 0px 5px 10px;
+    margin:10px 0px;
+    border-bottom:1px solid #fff;
+    border-top:1px solid #d9d9d9;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    border-radius:10px;
+    padding-top:25px;
+    margin-bottom:2px;
+}
+#steps form p{
+    float:left;
+    clear:both;
+    margin:5px 0px;
+     background-color:#d8e2f4;
+    border:1px solid #e2f0fa;
+    width:400px;
+    padding:10px;
+    margin-left:100px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    -moz-box-shadow:0px 0px 3px #aaa;
+    -webkit-box-shadow:0px 0px 3px #aaa;
+    box-shadow:0px 0px 3px #aaa;
+    
+    
+    
+    
+}
+#steps form p label{
+    width:160px;
+    float:left;
+    text-align:right;
+    margin-right:15px;
+    line-height:26px;
+    color:#0F2234;
+    text-shadow:1px 1px 1px #fff;
+    font-weight:bold;
+}
+
+#thankyou
+{
+	margin-left: -10px;
+	margin-right:10px;
+	width:600px;
+}
+#steps form input:not([type=radio]),
+#steps form textarea,
+#steps form select{
+    background: #ffffff;
+    border: 1px solid #ddd;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    outline: none;
+    padding: 5px;
+    width: 200px;
+    float:left;
+}
+#steps form input:focus{
+    -moz-box-shadow:0px 0px 3px #aaa;
+    -webkit-box-shadow:0px 0px 3px #aaa;
+    box-shadow:0px 0px 3px #aaa;
+    background-color:#FFFEEF;
+}
+#steps form p.submit{
+    background:none;
+    border:none;
+    -moz-box-shadow:none;
+    -webkit-box-shadow:none;
+    box-shadow:none;
+}
+#steps form button {
+
+	
+
+	
+	float:right;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-weight: heavy;
+	color: #ffffff;
+	padding: 10px 20px;
+	background: -moz-linear-gradient(
+		top,
+		#78aadb 0%,
+		#618eba);
+	background: -webkit-gradient(
+		linear, left top, left bottom, 
+		from(#78aadb),
+		to(#618eba));
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	border: 1px solid #44586b;
+
+}
+#steps form button:hover {
+    font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-weight: heavy;
+	color: #ffffff;
+	padding: 10px 20px;
+	background: -moz-linear-gradient(
+		top,
+		#699fd6 0%,
+		#52789e);
+	background: -webkit-gradient(
+		linear, left top, left bottom, 
+		from(#699fd6),
+		to(#52789e));
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	border: 1px solid #44586b;
+}
+    </style>
+  </metal:head>
+
+  <metal:head fill-slot="javascript_head_slot">
+    
+            
+            <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script type="text/javascript" src="/eip/sliding.form.js"> </script>
+    <script type="text/javascript">
+      
+    </script>
+  </metal:head>
+
+  <body>
+
+    <div metal:fill-slot="main">
+    
+     
+        
+        <div id="content">
+            
+            <div id="wrapper">
+                <div id="steps">
+                    <form id="formElem" name="formElem" action="" method="post">
+                        <fieldset class="step">
+                            <legend>Your Donation makes a difference!</legend>
+                            <p>
+                                <label for="usertitle">Title</label>
+                                <select id="usertitle" name="cardtype">
+                                    <option>Dr.</option>
+                                    <option>Mr.</option>
+                                    <option>Mrs.</option>
+                                    <option>Ms.</option>
+                                </select>
+                            </p>
+                            
+                            <p>
+                                <label for="username">Full name</label>
+                                <input id="username" placeholder="First, then last name" name="username" />
+                            </p>
+                            <p>
+                                <label for="email">Email</label>
+                                <input id="email" name="email" placeholder="e.g abcd@gmail.com" type="email" AUTOCOMPLETE=OFF />
+                            </p>
+                            
+                            <p>
+                                <label for="phone">Phone</label>
+                                <input id="phone" name="phone" placeholder="e.g. +91 9855555555" type="tel" AUTOCOMPLETE=OFF />
+                            </p>
+                            
+                        </fieldset>
+                        <fieldset class="step">
+                            <legend>Personal Details</legend>
+                            <p>
+                                <label for="addrl1">Address line 1</label>
+                                <input id="addrl1" name="addrl1" type="text" AUTOCOMPLETE=OFF />
+                            </p>
+                            <p>
+                                <label for="addrl2">Address line 2</label>
+                                <input id="addrl2" name="addrl2" type="text" AUTOCOMPLETE=OFF />
+                            </p>
+                            <p>
+                                <label for="city">City</label>
+                                <input id="city" name="city" type="text" AUTOCOMPLETE=OFF />
+                            </p>
+                            <p>
+                                <label for="country">Country</label>
+                                <input id="country" name="country" type="text" AUTOCOMPLETE=OFF />
+                            </p>
+                           
+                            
+                        </fieldset>
+                        
+                        <fieldset class="step">
+                            <legend>Confirm</legend>
+							<p id="thankyou">
+								Thank you for the Donation! This will help us 
+								spread Connexions all across the world and allow
+								us to provide free and quality educational content
+								to students and educators all across the world. We look
+								forward to your help and support always. We are pleased
+								to have you with us and we hope you will continue to use Connexions.
+							</p>
+                            <p class="submit">
+                                <button id="registerButton" type="submit">Proceed with donation</button>
+                            </p>
+                        </fieldset>
+						<fieldset class="step">
+                            <legend>Confirm</legend>
+							<p id="thankyou">
+								Thank you for the Donation! This will help us 
+								spread Connexions all across the world and allow
+								us to provide free and quality educational content
+								to students and educators all across the world. We look
+								forward to your help and support always. We are pleased
+								to have you with us and we hope you will continue to use Connexions.
+							</p>
+                            <p class="submit">
+                                <button id="registerButton" type="submit">Proceed with donation</button>
+                            </p>
+                        </fieldset>
+                    </form>
+                </div>
+                <div id="navigation" style="display:none;">
+                    <ul>
+                        <li class="selected">
+                            <a href="#">Personal Details</a>
+                        </li>
+                        <li>
+                            <a href="#">Personal Details 2</a>
+                        </li>
+                        <li>
+                            <a href="#">Confirm</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            </div>
+      
+    </div>
+  </body>
+</html>
+</tal:page>

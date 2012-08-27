@@ -1,0 +1,45 @@
+File name: dbk-clean-whole-remove-duplicate-glossentry.xsl
+Purpose: A small footnote at the end for donations.
+Changes: No significant changes except adding a few lines for donation.
+Location:cnx/src/Products.RhaptosPrint/Products/RhaptosPrint/epub/xsl/dbk-clean-whole-remove-duplicate-glossentry.xsl
+
+
+File name:cnx_donate.pt
+Purpose: This is basically the Donate now form. 
+Changes: Almost entirely changed except the plone specific parts like tha "TAL" elements.
+Now uses jquery and javascript.
+Previously used prototype.js
+Uses file "sliding.form.js" kept inside the eip folder with other js files.
+Location: /home/developer/cnx/src/Products.RhaptosModuleEditor/Products/RhaptosModuleEditor/skins/rhaptos_module_editor/eip
+
+
+File name: bar_content_actions.pt
+Purpose: This basically adds a class to all the download links for the pop-up.
+Changes: Added a class "newpopupfin" to all the href tags that are responsible for download.
+
+Location:
+
+File name: content.css
+Purpose: Contains the style for the pop-up.
+changes: Loads of changes , in fact mostly are additions.
+Location: /home/developer/cnx/src/Products.CNXContent/Products/CNXContent/skins/CNXContent/cnx-styles/newlook
+
+File name: dynamic.js
+Purpose. This has the code for the pop-up.
+It uses only jquery for the pop-up.It in fact uses the jquery version already being used for the pop-up. It does not use extjs like the way addtolens uses.
+location: RhaptosContent/js
+
+
+Now description of the map that I made using raphael.js, templating engine jinja2 and python.
+
+application name is datta3442. (app.yaml)
+Library included: jinja2 (app.yaml)
+
+the assets folder contains the required css, js and imgs.
+
+the templates folder contains the index.html. This has the js code for plotting, geolocation and retrieving data from the server.
+
+
+
+
+
